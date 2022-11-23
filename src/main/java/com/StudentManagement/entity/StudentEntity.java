@@ -1,11 +1,16 @@
 package com.StudentManagement.entity;
 
+import com.StudentManagement.utils.Messages;
+import lombok.Data;
+
 import javax.persistence.*;
+import javax.validation.constraints.Email;
 import javax.validation.constraints.NotNull;
 
 @Entity
+@Data
 @Table(name = "student")
-public class StudentEntity {
+public class StudentEntity extends BaseEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -16,6 +21,7 @@ public class StudentEntity {
 
     @Column(name = "email", unique = true)
     @NotNull(message = "email is mandatory")
+    @Email(message = Messages.EMAIL_INVALID)
     private String email;
 
     @Column(name = "phone")
