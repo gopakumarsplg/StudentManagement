@@ -1,14 +1,18 @@
 package com.StudentManagement.entity;
 
+import lombok.Data;
 import org.hibernate.annotations.NotFound;
 import org.hibernate.annotations.NotFoundAction;
 
 import javax.persistence.Column;
 //import javax.persistence.FetchType;
 import javax.persistence.JoinColumn;
+import javax.persistence.MappedSuperclass;
 //import javax.persistence.OneToOne;
 import java.util.Date;
 
+@Data
+@MappedSuperclass
 public class BaseEntity {
 
     @Column(name = "created_on", insertable = true, updatable = true)
