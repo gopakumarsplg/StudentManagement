@@ -5,6 +5,8 @@ import com.StudentManagement.dto.StudentResponseDto;
 
 public interface StudentService {
 
-    public StudentResponseDto studentRegister(StudentRegistrationDto studentRegistrationDto);
+    StudentResponseDto studentRegister(StudentRegistrationDto studentRegistrationDto);
+    StudentResponseDto studentDelete(Long id);
+
     }
 

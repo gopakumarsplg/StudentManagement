@@ -1,6 +1,6 @@
 package com.StudentManagement.dto;
 
-import com.StudentManagement.entity.StudentEntity;
+import com.StudentManagement.entity.Student;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -17,12 +17,12 @@ public class StudentRegistrationDto {
     private String guardian;
     private Long batch;
 
-    public StudentRegistrationDto(StudentEntity studentEntity) {
-        this.name = studentEntity.getName();
-        this.email = studentEntity.getName();
-        this.phone = studentEntity.getPhone();
-        this.address = studentEntity.getAddress();
-        this.guardian = studentEntity.getGuardian();
-        this.batch = studentEntity.getBatch();
+    public StudentRegistrationDto(Student student) {
+        this.name = student.getName();
+        this.email = student.getName();
+        this.phone = student.getPhone();
+        this.address = student.getAddress();
+        this.guardian = student.getGuardian();
+        this.batch = student.getBatch();
     }
 }

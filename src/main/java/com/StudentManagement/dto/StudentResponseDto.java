@@ -1,6 +1,6 @@
 package com.StudentManagement.dto;
 
-import com.StudentManagement.entity.StudentEntity;
+import com.StudentManagement.entity.Student;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -9,5 +9,5 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 public class StudentResponseDto extends RestApiResponse{
-    private StudentEntity data;
+    private Student data;
 }

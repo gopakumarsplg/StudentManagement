@@ -16,4 +16,6 @@ public class Messages {
 //    Student
     public static final String STUDENT_REGISTER_SUCCESS = "Student Registered Successfully";
     public static final String STUDENT_REGISTER_FAILED = "Student Registration Failed";
+    public static final String STUDENT_DELETE_SUCCESS = "Student deleted Successfully";
+    public static final String STUDENT_DELETE_FAILED = "Student deletion failed";
 }
