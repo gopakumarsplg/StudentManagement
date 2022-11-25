@@ -7,7 +7,7 @@ import javax.persistence.*;
 
 @Entity
 @Data
-@Table(name = "class")
+@Table(name = "tb_student_class")
 @EntityListeners(EntityListener.class)
 public class Class extends BaseEntity {
 
