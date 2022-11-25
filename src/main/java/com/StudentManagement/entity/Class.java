@@ -18,7 +18,7 @@ public class Class extends BaseEntity {
     @Column(name = "standard", length = 16)
     private int standard;
 
-    @OneToOne(mappedBy = "clas")
+    @OneToOne(mappedBy = "classTable")
     private Student student;
 
 }

@@ -21,13 +21,11 @@ public class BaseEntity {
     @Column(name = "updated_on", insertable = true, updatable = true)
     protected Date updatedOn;
 
-//    @OneToOne(targetEntity = Admin.class, fetch = FetchType.LAZY)
     @NotFound(action = NotFoundAction.IGNORE)
     @JoinColumn(name = "created_by")
     protected String createdBy;
 
     @JoinColumn(name = "updated_by")
-//    @OneToOne(targetEntity= Admin.class, fetch = FetchType.LAZY)
     @NotFound(action = NotFoundAction.IGNORE)
     protected String updatedBy;
 }

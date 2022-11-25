@@ -14,7 +14,7 @@ import java.util.Optional;
 public class StudentServiceImpl implements StudentService {
 
     @Autowired
-    StudentRepository studentRepository;
+    private StudentRepository studentRepository;
 
     @Override
     public StudentResponseDto studentRegister(StudentRegistrationDto studentRegistrationDto) {
@@ -32,7 +32,7 @@ public class StudentServiceImpl implements StudentService {
     @Override
     public StudentResponseDto studentDelete(Long id) {
         Optional<Student> studentEntity = studentRepository.findById(id);
-        if (studentEntity != null && studentEntity.get().getIsDeleted()!= false) {
+        if (studentEntity != null && studentEntity.get().getIsDeleted() != false) {
             studentEntity.get().setIsDeleted(true);
         }
         return new StudentResponseDto(studentEntity.get());

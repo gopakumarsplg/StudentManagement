@@ -9,7 +9,7 @@ import javax.persistence.*;
 @Entity
 @Table(name = "exams")
 @EntityListeners(EntityListener.class)
-public class Exam extends BaseEntity{
+public class Exam extends BaseEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -23,7 +23,7 @@ public class Exam extends BaseEntity{
     private Subject subject;
 
     @Column(name = "marks")
-    private int marks;
+    private Integer marks;
 
     @Column(name = "grade", length = 1)
     private String garde;

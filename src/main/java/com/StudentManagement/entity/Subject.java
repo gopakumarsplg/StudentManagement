@@ -9,7 +9,7 @@ import javax.persistence.*;
 @Data
 @Table(name = "Subjects")
 @EntityListeners(EntityListener.class)
-public class Subject extends BaseEntity{
+public class Subject extends BaseEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

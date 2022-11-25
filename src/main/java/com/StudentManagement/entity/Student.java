@@ -45,6 +45,6 @@ public class Student extends BaseEntity {
 
     @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     @JoinColumn(name = "fk_class_id")
-    private Class clas;
+    private Class classTable;
 
 }

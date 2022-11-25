@@ -6,7 +6,7 @@ import com.StudentManagement.dto.StudentResponseDto;
 public interface StudentService {
 
     StudentResponseDto studentRegister(StudentRegistrationDto studentRegistrationDto);
-    StudentResponseDto studentDelete(Long id);
 
-    }
+    StudentResponseDto studentDelete(Long id);
+}
 

@@ -10,7 +10,7 @@ import javax.validation.constraints.Email;
 @Table(name = "teachers")
 @Entity
 @EntityListeners(EntityListener.class)
-public class Teacher extends BaseEntity{
+public class Teacher extends BaseEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
