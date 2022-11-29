@@ -22,8 +22,8 @@ import java.util.ResourceBundle;
 @Component
 public class ResultAspect {
 
-    @Autowired
-    private ResourceBundle resourceBundle;
+   @Autowired
+   ResourceBundle resourceBundle;
 
     @Around("@annotation(com.StudentManagement.annotation.APIResult)")
     public Object onApiResponse(final ProceedingJoinPoint pjp) {

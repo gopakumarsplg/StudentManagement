@@ -43,6 +43,8 @@ public class Student extends BaseEntity {
     @Column(name = "deleted")
     private Boolean isDeleted;
 
+    private String password;
+
     @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     @JoinColumn(name = "fk_class_id")
     private Class classTable;
