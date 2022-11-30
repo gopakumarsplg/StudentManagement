@@ -7,12 +7,13 @@ import javax.persistence.*;
 
 @Entity
 @Data
-@Table(name = "Subjects")
+@Table(name = "tb_subjects")
 @EntityListeners(EntityListener.class)
 public class Subject extends BaseEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+//    @OneToOne(mappedBy = "subject")
     private Long id;
 
     @Column(name = "name", length = 30)

@@ -46,7 +46,7 @@ public class Student extends BaseEntity {
     private String password;
 
     @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-    @JoinColumn(name = "fk_class_id")
+    @JoinColumn(name = "fk_class_id", referencedColumnName = "id")
     private Class classTable;
 
 }

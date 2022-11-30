@@ -7,7 +7,7 @@ import javax.persistence.*;
 
 @Data
 @Entity
-@Table(name = "exams")
+@Table(name = "tb_exams")
 @EntityListeners(EntityListener.class)
 public class Exam extends BaseEntity {
 
@@ -19,7 +19,7 @@ public class Exam extends BaseEntity {
     private String type;
 
     @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-    @JoinColumn(name = "fk_subject_id")
+    @JoinColumn(name = "fk_subject_id", referencedColumnName = "id")
     private Subject subject;
 
     @Column(name = "marks")

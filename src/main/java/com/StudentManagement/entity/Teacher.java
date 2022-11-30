@@ -7,7 +7,7 @@ import javax.persistence.*;
 import javax.validation.constraints.Email;
 
 @Data
-@Table(name = "teachers")
+@Table(name = "tb_teachers")
 @Entity
 @EntityListeners(EntityListener.class)
 public class Teacher extends BaseEntity {
@@ -31,4 +31,12 @@ public class Teacher extends BaseEntity {
 
     @Column(name = "address", length = 60)
     private String address;
+
+    @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @JoinColumn(name = "fk_sub_id", referencedColumnName = "id")
+    private Subject subject;
+
+    @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @JoinColumn(name = "fk_class_id", referencedColumnName = "id")
+    private Class classTable;
 }
