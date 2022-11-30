@@ -29,7 +29,7 @@ public class Student extends BaseEntity {
     private String email;
 
     @Column(name = "phone", length = 10)
-    private Long phone;
+    private int phone;
 
     @Column(name = "place", length = 40)
     private String address;
@@ -38,7 +38,7 @@ public class Student extends BaseEntity {
     private String guardian;
 
     @Column(name = "batch", length = 8)
-    private Long batch;
+    private int batch;
 
     @Column(name = "deleted")
     private Boolean isDeleted;
@@ -46,7 +46,7 @@ public class Student extends BaseEntity {
     private String password;
 
     @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-    @JoinColumn(name = "fk_class_id", referencedColumnName = "id")
-    private Class classTable;
+    @JoinColumn(name = "class_id", referencedColumnName = "id")
+    private Class classId;
 
 }

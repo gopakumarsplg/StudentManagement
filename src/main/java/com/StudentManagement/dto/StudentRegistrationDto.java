@@ -8,14 +8,18 @@ import lombok.NoArgsConstructor;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class StudentRegistrationDto {
+public class StudentRegistrationDto extends BaseDto {
 
     private String name;
     private String email;
-    private Long phone;
+    private int phone;
     private String address;
     private String guardian;
-    private Long batch;
+    private int batch;
+
+    private String password;
+
+    private Long classId;
 
     public StudentRegistrationDto(Student student) {
         this.name = student.getName();

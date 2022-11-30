@@ -13,7 +13,6 @@ public class Class extends BaseEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-//    @OneToOne(mappedBy = "classTable")
     private Long id;
 
     @Column(name = "standard", length = 16)
