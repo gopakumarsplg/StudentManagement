@@ -8,6 +8,6 @@ public interface StudentService {
 
     StudentResponseDto studentRegister(StudentRegistrationDto studentRegistrationDto) throws SMException;
 
-    StudentResponseDto studentDelete(Long id);
+//    StudentResponseDto studentDelete(Long id);
 }
 

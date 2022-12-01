@@ -1,7 +1,14 @@
 package com.StudentManagement.dto;
 
+import com.StudentManagement.entity.Class;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 import org.springframework.beans.BeanUtils;
 
+@Data
+@AllArgsConstructor
+@NoArgsConstructor
 public class ClassDto extends BaseDto{
 
     private Long id;

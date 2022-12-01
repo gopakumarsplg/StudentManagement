@@ -8,6 +8,7 @@ import org.aspectj.lang.annotation.Around;
 import org.aspectj.lang.annotation.Aspect;
 import org.aspectj.lang.reflect.MethodSignature;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -60,7 +61,13 @@ public class ResultAspect {
 //                httpStatus = HttpStatus.UNAUTHORIZED;
 //                UnAuthorizedException exception = (UnAuthorizedException) e;
 //                result = new ResultDto(false, retrieveMessage(exception.getMessage()), 0, null);
-            } else {
+
+            }
+            else if (e instanceof DataIntegrityViolationException) {
+                httpStatus = HttpStatus.NOT_FOUND;
+                result = new ResultDto(true, retrieveMessage(e.getMessage()), 0, null);
+            }
+            else {
                 e.printStackTrace();
                 result = new ResultDto(false, retrieveMessage("#server.error"), 0, null);
                 httpStatus = HttpStatus.INTERNAL_SERVER_ERROR;

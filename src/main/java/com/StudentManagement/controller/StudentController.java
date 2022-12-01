@@ -2,14 +2,9 @@ package com.StudentManagement.controller;
 
 import com.StudentManagement.annotation.APIResult;
 import com.StudentManagement.dto.StudentRegistrationDto;
-import com.StudentManagement.dto.StudentResponseDto;
 import com.StudentManagement.exception.SMException;
 import com.StudentManagement.service.impl.StudentServiceImpl;
-import com.StudentManagement.utils.Messages;
-import com.StudentManagement.utils.RestApiStatusCode;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
@@ -24,9 +19,9 @@ public class StudentController {
         return studentService.studentRegister(studentRegistrationDto);
     }
 
-    @RequestMapping(value ="/student/delete/{id}", method = RequestMethod.DELETE)
-    @APIResult(message = "", error_message = "", message_code = 1)
-    public Object studentDelete(@PathVariable(value = "id")Long id) {
-        return studentService.studentDelete(id);
-    }
+//    @RequestMapping(value ="/student/delete/{id}", method = RequestMethod.DELETE)
+//    @APIResult(message = "", error_message = "", message_code = 1)
+//    public Object studentDelete(@PathVariable(value = "id")Long id) {
+//        return studentService.studentDelete(id);
+//    }
 }

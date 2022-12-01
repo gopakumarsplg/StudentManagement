@@ -1,16 +1,10 @@
 package com.StudentManagement.dto;
 
-import com.StudentManagement.entity.Class;
 import com.StudentManagement.entity.Student;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.springframework.beans.BeanUtils;
-
-import javax.persistence.CascadeType;
-import javax.persistence.FetchType;
-import javax.persistence.JoinColumn;
-import javax.persistence.OneToOne;
 
 @Data
 @NoArgsConstructor
@@ -29,11 +23,13 @@ public class StudentResponseDto extends BaseDto{
 
     private int batch;
 
-    @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-    @JoinColumn(name = "class_id", referencedColumnName = "id")
-    private Class classId;
+    private String username;
+    private ClassDto data;
 
-    public StudentResponseDto(Student savedEntity) {
+    public StudentResponseDto(Student savedEntity, String username) {
         BeanUtils.copyProperties(savedEntity, this);
+        ClassDto classDto = new ClassDto(savedEntity.getClassId());
+        this.data = classDto;
+        this.username = username;
     }
 }
