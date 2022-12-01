@@ -15,7 +15,6 @@ import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
-import java.util.Optional;
 
 @Service
 public class StudentServiceImpl implements StudentService {
@@ -40,21 +39,13 @@ public class StudentServiceImpl implements StudentService {
         user.setPassword(encoder.encode(studentRegistrationDto.getPassword()));
         try {
             userRepository.save(user);
+            student.setUser_id(userRepository.getReferenceById(user.getId()));
         } catch (DataIntegrityViolationException e) {
             throw new SMException("#user.already.exist", 0);
         }
          Student savedEntity = saveStudent(student);
         return new StudentResponseDto(savedEntity, user.getUsername());
     }
-
-//    @Override
-//    public StudentResponseDto studentDelete(Long id) {
-//        Optional<Student> studentEntity = studentRepository.findById(id);
-//        if (studentEntity != null && studentEntity.get().getIsDeleted() != false) {
-//            studentEntity.get().setIsDeleted(true);
-//        }
-//        return new StudentResponseDto(studentEntity.get());
-//    }
     private Student saveStudent(Student student) throws SMException{
         try {
             return studentRepository.save(student);
@@ -62,4 +53,13 @@ public class StudentServiceImpl implements StudentService {
             throw new SMException("#student.already.exist", 0);
         }
     }
+
+    //    @Override
+//    public StudentResponseDto studentDelete(Long id) {
+//        Optional<Student> studentEntity = studentRepository.findById(id);
+//        if (studentEntity != null && studentEntity.get().getIsDeleted() != false) {
+//            studentEntity.get().setIsDeleted(true);
+//        }
+//        return new StudentResponseDto(studentEntity.get());
+//    }
 }

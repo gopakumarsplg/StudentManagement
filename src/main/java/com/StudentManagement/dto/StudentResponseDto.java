@@ -22,7 +22,6 @@ public class StudentResponseDto extends BaseDto{
     private String guardian;
 
     private int batch;
-
     private String username;
     private ClassDto data;
 

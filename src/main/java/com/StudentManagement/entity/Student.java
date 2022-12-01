@@ -47,4 +47,8 @@ public class Student extends BaseEntity {
     @JoinColumn(name = "class_id", referencedColumnName = "id")
     private Class classId;
 
+    @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @JoinColumn(name = "user_id", referencedColumnName = "id")
+    private User user_id;
+
 }
