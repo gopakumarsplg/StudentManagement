@@ -23,6 +23,8 @@ public class StudentRegistrationDto extends BaseDto {
 
     private String username;
 
+    private Long roleId;
+
     public StudentRegistrationDto(Student student) {
         this.name = student.getName();
         this.email = student.getName();

@@ -40,7 +40,7 @@ public class Student extends BaseEntity {
     @Column(name = "batch", length = 8)
     private int batch;
 
-    @Column(name = "deleted")
+    @Column(name = "deleted", columnDefinition = "BIT not null default 0")
     private Boolean isDeleted;
 
     @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
@@ -49,6 +49,10 @@ public class Student extends BaseEntity {
 
     @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     @JoinColumn(name = "user_id", referencedColumnName = "id")
-    private User user_id;
+    private User userId;
+
+    @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @JoinColumn(name = "role_id", referencedColumnName = "id")
+    private Role roleId;
 
 }

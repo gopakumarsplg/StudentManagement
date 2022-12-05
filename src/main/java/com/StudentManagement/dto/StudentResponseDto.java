@@ -23,12 +23,12 @@ public class StudentResponseDto extends BaseDto{
 
     private int batch;
     private String username;
-    private ClassDto data;
+    private ClassDto student_class;
 
     public StudentResponseDto(Student savedEntity, String username) {
         BeanUtils.copyProperties(savedEntity, this);
         ClassDto classDto = new ClassDto(savedEntity.getClassId());
-        this.data = classDto;
+        this.student_class = classDto;
         this.username = username;
     }
 }

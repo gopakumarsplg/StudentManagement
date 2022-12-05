@@ -18,4 +18,9 @@ public class User extends BaseEntity{
 
     @Column(name = "password")
     private String password;
+
+    @ManyToMany
+    @JoinTable(name="tb_user_role",
+            joinColumns={@JoinColumn(name="user_id"}, inverseJoinColumns={@JoinColumn(name="role_id")} )
+                private Role roleId;
 }

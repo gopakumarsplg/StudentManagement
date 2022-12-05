@@ -1,9 +1,11 @@
 package com.StudentManagement.controller;
 
 import com.StudentManagement.annotation.APIResult;
+import com.StudentManagement.dto.LoginDto;
 import com.StudentManagement.dto.StudentRegistrationDto;
 import com.StudentManagement.exception.SMException;
 import com.StudentManagement.service.impl.StudentServiceImpl;
+import com.StudentManagement.service.impl.UserServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -13,6 +15,10 @@ public class StudentController {
 
     @Autowired
     private StudentServiceImpl studentService;
+
+    @Autowired
+    private UserServiceImpl userService;
+
     @RequestMapping(value = "/student/register", method = RequestMethod.POST)
     @APIResult(message ="#student.register.success", error_message ="#student.register.failed")
     public Object studentRegister(@RequestBody StudentRegistrationDto studentRegistrationDto) throws SMException {
@@ -24,4 +30,10 @@ public class StudentController {
 //    public Object studentDelete(@PathVariable(value = "id")Long id) {
 //        return studentService.studentDelete(id);
 //    }
+
+    @RequestMapping("/login")
+    @APIResult(message = "Login Success", error_message = "Login Failed")
+    public Object studentLogin(@RequestBody LoginDto loginDto) throws SMException{
+        return userService.login(loginDto);
+    }
 }

@@ -3,8 +3,11 @@ package com.StudentManagement.dto;
 import com.StudentManagement.entity.validators.EmailValidator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonProperty.Access;
+import lombok.Data;
+
 import java.io.Serializable;
 
+@Data
 public class LoginDto extends BaseDto implements Serializable {
 
 	/**
@@ -12,9 +15,10 @@ public class LoginDto extends BaseDto implements Serializable {
 	 */
 	private static final long serialVersionUID = 1L;
 
-	@EmailValidator(message = "{user.invalid.email}")
-	private String email;
+//	@EmailValidator(message = "{user.invalid.email}")
+//	private String email;
 
+	private String username;
 	@JsonProperty(access = Access.WRITE_ONLY)
 	private String password;
 
@@ -24,16 +28,16 @@ public class LoginDto extends BaseDto implements Serializable {
 	/**
 	 * @return the email
 	 */
-	public String getEmail() {
-		return email;
-	}
+//	public String getEmail() {
+//		return email;
+//	}
 
 	/**
 	 * @param email the email to set
 	 */
-	public void setEmail(String email) {
-		this.email = email;
-	}
+//	public void setEmail(String email) {
+//		this.email = email;
+//	}
 
 	/**
 	 * @return the password
