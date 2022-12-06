@@ -52,7 +52,7 @@ public class UserServiceImpl implements UserDetailsService {
                 .orElseThrow(() -> new UsernameNotFoundException("#user.not.found"));
         Optional<Student> student = studentRepository.findByUserId(user.getId());
         return new org.springframework.security.core.userdetails.User(user.getUsername(), user.getPassword(),
-                getAuthorities(userRoleRepository.findAllRolesByUser(student.get().getId())));
+                getAuthorities(userRoleRepository.findAllRolesByUser(student.get().getUserId().getId())));
     }
 
     private List<SimpleGrantedAuthority> getAuthorities(List<Role> userRoles) throws UsernameNotFoundException {

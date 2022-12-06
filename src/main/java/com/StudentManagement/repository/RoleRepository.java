@@ -10,8 +10,8 @@ import java.util.List;
 @Repository
 public interface RoleRepository extends JpaRepository<Role, Long> {
 
-    @Query(value = "select * from tb_role r \n" +
-            "join tb_student ts on ts.role_id = r.id \n" +
-            "where ts.id = :id",nativeQuery = true)
-    List<Role> findAllRolesByUser(Long id);
+    @Query(value = "select * from tb_user_role tur\n" +
+            "join tb_role tr on tr.id = tur.fk_role_id \n" +
+            "where tur.fk_user_id = ?1",nativeQuery = true)
+    List<Role> findAllRolesByUser(Long userId);
 }

@@ -4,13 +4,12 @@ import com.StudentManagement.dto.BaseDto;
 import com.StudentManagement.dto.LoginDto;
 import com.StudentManagement.dto.StudentRegistrationDto;
 import com.StudentManagement.dto.StudentResponseDto;
+import com.StudentManagement.entity.Role;
 import com.StudentManagement.entity.Student;
 import com.StudentManagement.entity.User;
+import com.StudentManagement.entity.UserRole;
 import com.StudentManagement.exception.SMException;
-import com.StudentManagement.repository.ClassRepository;
-import com.StudentManagement.repository.RoleRepository;
-import com.StudentManagement.repository.StudentRepository;
-import com.StudentManagement.repository.UserRepository;
+import com.StudentManagement.repository.*;
 import com.StudentManagement.service.StudentService;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,6 +18,9 @@ import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
+
+import java.util.ArrayList;
+import java.util.Optional;
 
 
 @Service
@@ -39,6 +41,9 @@ public class StudentServiceImpl implements StudentService {
     @Autowired
     private BCryptPasswordEncoder encoder;
 
+    @Autowired
+    private UserRoleRepository userRoleRepository;
+
     @Override
     public StudentResponseDto studentRegister(StudentRegistrationDto studentRegistrationDto) throws SMException {
         Student student = new Student();
@@ -50,7 +55,12 @@ public class StudentServiceImpl implements StudentService {
         try {
             userRepository.save(user);
             student.setUserId(userRepository.getReferenceById(user.getId()));
-            student.setRoleId(roleRepository.findById(studentRegistrationDto.getRoleId()).get());
+            ArrayList<Long> roles = studentRegistrationDto.getRoleId();
+            for (Long roleId: roles) {
+                Optional<Role> role = roleRepository.findById(roleId);
+                UserRole userRole = new UserRole(user, role.get());
+                userRoleRepository.save(userRole);
+            }
         } catch (DataIntegrityViolationException e) {
             throw new SMException("#user.already.exist", 0);
         }

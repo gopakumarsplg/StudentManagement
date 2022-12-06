@@ -4,6 +4,7 @@ import com.StudentManagement.annotation.APIResult;
 import com.StudentManagement.dto.LoginDto;
 import com.StudentManagement.dto.StudentRegistrationDto;
 import com.StudentManagement.exception.SMException;
+import com.StudentManagement.service.StudentService;
 import com.StudentManagement.service.impl.StudentServiceImpl;
 import com.StudentManagement.service.impl.UserServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,7 +15,7 @@ import org.springframework.web.bind.annotation.*;
 public class StudentController {
 
     @Autowired
-    private StudentServiceImpl studentService;
+    private StudentService studentService;
 
     @Autowired
     private UserServiceImpl userService;
