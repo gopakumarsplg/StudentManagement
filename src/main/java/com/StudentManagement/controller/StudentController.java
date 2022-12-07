@@ -5,10 +5,11 @@ import com.StudentManagement.dto.LoginDto;
 import com.StudentManagement.dto.StudentRegistrationDto;
 import com.StudentManagement.exception.SMException;
 import com.StudentManagement.service.StudentService;
-import com.StudentManagement.service.impl.StudentServiceImpl;
 import com.StudentManagement.service.impl.UserServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
+
+import javax.servlet.http.HttpServletRequest;
 
 @RestController
 @RequestMapping("${spring.data.rest.base-path}")
@@ -32,9 +33,9 @@ public class StudentController {
 //        return studentService.studentDelete(id);
 //    }
 
-    @RequestMapping("/login")
+    @RequestMapping(value = "/login", method = RequestMethod.POST)
     @APIResult(message = "Login Success", error_message = "Login Failed")
-    public Object studentLogin(@RequestBody LoginDto loginDto) throws SMException{
+    public Object studentLogin(@RequestBody LoginDto loginDto, HttpServletRequest request) throws SMException{
         return userService.login(loginDto);
     }
 }
