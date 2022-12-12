@@ -1,7 +1,5 @@
 package com.StudentManagement.service.impl;
 
-import com.StudentManagement.dto.BaseDto;
-import com.StudentManagement.dto.LoginDto;
 import com.StudentManagement.dto.StudentRegistrationDto;
 import com.StudentManagement.dto.StudentResponseDto;
 import com.StudentManagement.entity.Role;
@@ -14,8 +12,6 @@ import com.StudentManagement.service.StudentService;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataIntegrityViolationException;
-import org.springframework.security.authentication.AuthenticationManager;
-import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
@@ -47,16 +43,30 @@ public class StudentServiceImpl implements StudentService {
     @Override
     public StudentResponseDto studentRegister(StudentRegistrationDto studentRegistrationDto) throws SMException {
         Student student = new Student();
-        BeanUtils.copyProperties(studentRegistrationDto, student, "password", "id", "classId");
-        student.setClassId(classRepository.findById(studentRegistrationDto.getClassId()).orElseThrow(() -> new SMException("#class.not.found", 0)));
+            BeanUtils.copyProperties(studentRegistrationDto, student, "password", "id", "classId");
+            student.setClassId(classRepository.findById(studentRegistrationDto.getClassId()).orElseThrow(() -> new SMException("#class.not.found", 0)));
+            User user = saveUser(studentRegistrationDto);
+            student.setUserId(userRepository.getReferenceById(user.getId()));
+        Student savedEntity = saveStudent(student);
+        return new StudentResponseDto(savedEntity, user.getUsername());
+    }
+
+    private Student saveStudent(Student student) throws SMException {
+        try {
+            return studentRepository.save(student);
+        } catch (DataIntegrityViolationException e) {
+            throw new SMException("#student.already.exist", 0);
+        }
+    }
+
+    private User saveUser(StudentRegistrationDto studentRegistrationDto) throws SMException {
         User user = new User();
         user.setUsername(studentRegistrationDto.getUsername());
         user.setPassword(encoder.encode(studentRegistrationDto.getPassword()));
         try {
             userRepository.save(user);
-            student.setUserId(userRepository.getReferenceById(user.getId()));
             ArrayList<Long> roles = studentRegistrationDto.getRoleId();
-            for (Long roleId: roles) {
+            for (Long roleId : roles) {
                 Optional<Role> role = roleRepository.findById(roleId);
                 UserRole userRole = new UserRole(user, role.get());
                 userRoleRepository.save(userRole);
@@ -64,16 +74,7 @@ public class StudentServiceImpl implements StudentService {
         } catch (DataIntegrityViolationException e) {
             throw new SMException("#user.already.exist", 0);
         }
-         Student savedEntity = saveStudent(student);
-        return new StudentResponseDto(savedEntity, user.getUsername());
-    }
-
-    private Student saveStudent(Student student) throws SMException{
-        try {
-            return studentRepository.save(student);
-        } catch (DataIntegrityViolationException e) {
-            throw new SMException("#student.already.exist", 0);
-        }
+        return user;
     }
 
     //    @Override

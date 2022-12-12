@@ -10,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.validation.Valid;
 
 @RestController
 @RequestMapping("${spring.data.rest.base-path}")
@@ -18,12 +19,9 @@ public class StudentController {
     @Autowired
     private StudentService studentService;
 
-    @Autowired
-    private UserServiceImpl userService;
-
     @RequestMapping(value = "/student/register", method = RequestMethod.POST)
     @APIResult(message ="#student.register.success", error_message ="#student.register.failed")
-    public Object studentRegister(@RequestBody StudentRegistrationDto studentRegistrationDto) throws SMException {
+    public Object studentRegister(@Valid @RequestBody StudentRegistrationDto studentRegistrationDto) throws SMException {
         return studentService.studentRegister(studentRegistrationDto);
     }
 
@@ -32,10 +30,4 @@ public class StudentController {
 //    public Object studentDelete(@PathVariable(value = "id")Long id) {
 //        return studentService.studentDelete(id);
 //    }
-
-    @RequestMapping(value = "/login", method = RequestMethod.POST)
-    @APIResult(message = "Login Success", error_message = "Login Failed")
-    public Object studentLogin(@RequestBody LoginDto loginDto, HttpServletRequest request) throws SMException{
-        return userService.login(loginDto);
-    }
 }

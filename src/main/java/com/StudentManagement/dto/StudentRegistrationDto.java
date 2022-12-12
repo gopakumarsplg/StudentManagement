@@ -5,6 +5,8 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -13,17 +15,25 @@ import java.util.List;
 @NoArgsConstructor
 public class StudentRegistrationDto extends BaseDto {
 
+    @NotEmpty(message = "Name is mandatory")
     private String name;
+    @NotNull(message = "email is mandatory")
     private String email;
-    private int phone;
+
+    @NotNull(message = "not a valid number")
+    private Integer phone;
+
+    @NotNull(message = "address")
     private String address;
     private String guardian;
     private int batch;
 
+    @NotNull(message = "password is mandatory")
     private String password;
 
     private Long classId;
 
+    @NotNull
     private String username;
 
     private ArrayList<Long> roleId;

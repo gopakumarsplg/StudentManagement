@@ -13,7 +13,6 @@ public class Subject extends BaseEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-//    @OneToOne(mappedBy = "subject")
     private Long id;
 
     @Column(name = "name", length = 30)
