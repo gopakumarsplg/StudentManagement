@@ -4,28 +4,38 @@ import lombok.Data;
 
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
+import java.util.ArrayList;
 
 @Data
 public class TeacherRegistrationDto extends BaseDto{
 
-    @NotEmpty
+    @NotEmpty(message = "#name.is.empty")
     private String name;
 
-    @NotNull
+    @NotNull(message = "#email.is.empty")
     private String email;
 
-    @NotNull
+    @NotNull(message = "#phone.is.empty")
     private Long phone;
 
-    @NotEmpty
+    @NotEmpty(message = "#phone.is.empty")
     private String place;
 
-    @NotEmpty
+    @NotEmpty(message = "#address.is.empty")
     private String address;
 
-    @NotNull
-    private Long subject_id;
+    @NotNull(message = "#subject.id.is.empty")
+    private Long subjectId;
 
-    @NotNull
-    private Long class_id;
+    @NotNull(message = "#class.id.is.empty")
+    private Long classId;
+
+    @NotEmpty(message = "#user.name.is.empty")
+    private String userName;
+
+    @NotEmpty(message = "#password.is.empty")
+    private String password;
+
+    @NotEmpty(message = "#role.is.empty")
+    private ArrayList<Long> roleId;
 }

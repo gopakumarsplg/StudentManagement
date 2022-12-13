@@ -1,6 +1,7 @@
 package com.StudentManagement.dto;
 
 import com.StudentManagement.entity.Teacher;
+import com.StudentManagement.entity.User;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -24,7 +25,11 @@ public class TeacherResponseDto extends BaseDto{
 
     private Long subject_Id;
 
-    public TeacherResponseDto(Teacher savedTeacher){
+    private String userName;
+
+    private Long userId;
+
+    public TeacherResponseDto(Teacher savedTeacher, User savedUser){
         this.name = savedTeacher.getName();
         this.address = savedTeacher.getAddress();
         this.phone = savedTeacher.getPhone();
@@ -32,5 +37,7 @@ public class TeacherResponseDto extends BaseDto{
         this.email = savedTeacher.getEmail();
         this.class_id = savedTeacher.getClassTable().getId();
         this.subject_Id = savedTeacher.getSubject().getId();
+        this.userName = savedUser.getUsername();
+        this.userId = savedUser.getId();
     }
 }

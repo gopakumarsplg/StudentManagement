@@ -46,7 +46,7 @@ public class StudentServiceImpl implements StudentService {
             BeanUtils.copyProperties(studentRegistrationDto, student, "password", "id", "classId");
             student.setClassId(classRepository.findById(studentRegistrationDto.getClassId()).orElseThrow(() -> new SMException("#class.not.found", 0)));
             User user = saveUser(studentRegistrationDto);
-            student.setUserId(userRepository.getReferenceById(user.getId()));
+            student.setUserId(user);
         Student savedEntity = saveStudent(student);
         return new StudentResponseDto(savedEntity, user.getUsername());
     }
@@ -67,8 +67,8 @@ public class StudentServiceImpl implements StudentService {
             userRepository.save(user);
             ArrayList<Long> roles = studentRegistrationDto.getRoleId();
             for (Long roleId : roles) {
-                Optional<Role> role = roleRepository.findById(roleId);
-                UserRole userRole = new UserRole(user, role.get());
+                Role role = roleRepository.findById(roleId).orElseThrow(()-> new SMException("#role.not.found"));
+                UserRole userRole = new UserRole(user, role);
                 userRoleRepository.save(userRole);
             }
         } catch (DataIntegrityViolationException e) {
