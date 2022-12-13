@@ -15,25 +15,25 @@ import java.util.List;
 @NoArgsConstructor
 public class StudentRegistrationDto extends BaseDto {
 
-    @NotEmpty(message = "Name is mandatory")
+    @NotEmpty(message = "#name.is.empty")
     private String name;
-    @NotNull(message = "email is mandatory")
+    @NotNull(message = "#email.is.empty")
     private String email;
 
-    @NotNull(message = "not a valid number")
+    @NotNull(message = "#phone.is.empty")
     private Integer phone;
 
-    @NotNull(message = "address")
+    @NotNull(message = "#address.is.empty")
     private String address;
     private String guardian;
     private int batch;
 
-    @NotNull(message = "password is mandatory")
+    @NotNull(message = "#password.is.empty")
     private String password;
 
     private Long classId;
 
-    @NotNull
+    @NotNull(message = "#user.name.is.empty")
     private String username;
 
     private ArrayList<Long> roleId;
